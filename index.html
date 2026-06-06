@@ -1,14 +1,1747 @@
-<!doctype html>
-<html lang="en">
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>SHIVANSH RESTRO | Experience The Royal Taste Of India</title>
     <meta name="description" content="Indulge in pre-selected traditional heritage Indian dining, coal roasted signature dishes, and elite palace table bookings at Shivansh Restro." />
+    
+    <!-- Premium Fonts from Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700;900&family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&family=Poppins:wght@200;300;400;500;600;700&family=JetBrains+Mono:wght@300;400;500;700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+    
+    <!-- Pure Tailwind Script CDN for styling -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <!-- Tailwind Theme Customizations -->
+    <script>
+      tailwind.config = {
+        theme: {
+          extend: {
+            colors: {
+              gold: '#D4AF37',
+              'gold-hover': '#AA8C2C',
+              maroon: '#6A0D25',
+              saffron: '#FF9933',
+              ivory: '#FFFFF0',
+              beige: '#F5F5DC',
+              cream: '#FFFDD0',
+              emerald: '#50C878',
+              amber: '#FFBF00'
+            },
+            fontFamily: {
+              sans: ["Poppins", "Inter", "sans-serif"],
+              serif: ["Playfair Display", "Cinzel", "serif"],
+              display: ["Cinzel", "Playfair Display", "serif"],
+              mono: ["JetBrains Mono", "monospace"]
+            }
+          }
+        }
+      }
+    </script>
+
+    <!-- Custom Luxury Animations & Global Overrides -->
+    <style>
+      /* Smooth scroll behaviors */
+      ::-webkit-scrollbar {
+        width: 6px;
+      }
+      ::-webkit-scrollbar-track {
+        background: #0A0204;
+      }
+      ::-webkit-scrollbar-thumb {
+        background: #D4AF37;
+        border-radius: 4px;
+      }
+
+      /* Global Styles */
+      body {
+        font-family: 'Poppins', 'Inter', sans-serif;
+        background-color: #0A0204;
+        color: #F5F5DC;
+        overflow-x: hidden;
+      }
+
+      /* Gold Glow effect */
+      .gold-glow {
+        box-shadow: 0 0 20px rgba(212, 175, 55, 0.15);
+      }
+      .radial-gold-glow {
+        background: radial-gradient(circle, rgba(212, 175, 55, 0.15) 0%, rgba(0,0,0,0) 70%);
+      }
+
+      /* Classmorphism Panels */
+      .glassmorphism {
+        background: rgba(42, 4, 13, 0.45);
+        backdrop-filter: blur(8px);
+        -webkit-backdrop-filter: blur(8px);
+      }
+      .glassmorphism-light {
+        background: rgba(212, 175, 55, 0.04);
+        backdrop-filter: blur(5px);
+        -webkit-backdrop-filter: blur(5px);
+      }
+
+      /* custom floating animations for decor spices */
+      @keyframes float-spice {
+        0% { transform: translateY(0px) rotate(0deg); }
+        50% { transform: translateY(-15px) rotate(4deg); }
+        100% { transform: translateY(0px) rotate(0deg); }
+      }
+      .animate-float-spice-slow {
+        animation: float-spice 9s ease-in-out infinite;
+      }
+      .animate-float-spice-medium {
+        animation: float-spice 6s ease-in-out infinite;
+      }
+
+      @keyframes gold-pulse {
+        0%, 100% { box-shadow: 0 0 10px rgba(212, 175, 55, 0.2); }
+        50% { box-shadow: 0 0 25px rgba(212, 175, 55, 0.45); }
+      }
+      .animate-gold-pulse {
+        animation: gold-pulse 4s infinite;
+      }
+
+      /* Carousel snap hides */
+      .snap-x::-webkit-scrollbar {
+        display: none;
+      }
+      .snap-x {
+        -ms-overflow-style: none; /* IE and Edge */
+        scrollbar-width: none; /* Firefox */
+      }
+    </style>
   </head>
-  <body>
-    <div id="root"></div>
-    <script type="module" src="/src/main.tsx"></script>
+
+  <body class="antialiased selection:bg-gold selection:text-maroon">
+
+    <!-- Scroll Progress Gauge Indicator -->
+    <div class="fixed top-0 left-0 h-[3px] bg-gradient-to-r from-gold via-saffron to-amber z-50 transition-all duration-300" id="scroll-gauge" style="width: 0%"></div>
+
+    <!-- Active order Tracker alert sticky spinner badge -->
+    <div id="active-tracker-spin-trigger" class="fixed bottom-6 left-6 z-40 hidden cursor-pointer animate-bounce group">
+      <div class="h-14 w-14 rounded-full bg-gradient-to-r from-gold to-saffron flex items-center justify-center border border-white/20 shadow-2xl relative">
+        <span class="absolute inset-x-0 inset-y-0 border-2 border-dashed border-maroon/40 rounded-full animate-spin"></span>
+        <i data-lucide="truck" class="text-maroon w-6 h-6"></i>
+      </div>
+      <div class="absolute left-16 top-2 bg-maroon border border-gold/30 px-3 py-1.5 rounded-xl whitespace-nowrap text-[10px] font-sans font-bold text-gold opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+        Live Tracking Active &gt;
+      </div>
+    </div>
+
+    <!-- Sticky Navigation Bar Container -->
+    <header id="navbar-container" class="fixed top-0 inset-x-0 z-40 transition-all duration-500 bg-transparent py-5">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex items-center justify-between">
+        
+        <!-- Royal Logo Brand Identity -->
+        <a href="#home" class="nav-scroll-trigger flex items-center gap-2.5 group" data-sec="home">
+          <div class="h-10 w-10 flex items-center justify-center rounded-lg bg-gradient-to-tr from-gold to-saffron p-1 border border-gold/40 group-hover:rotate-6 transition-transform">
+            <span class="font-display font-black text-maroon text-lg">S</span>
+          </div>
+          <div class="text-left">
+            <span class="font-display font-black text-gold text-lg tracking-wider block leading-none">SHIVANSH</span>
+            <span class="text-[9px] uppercase tracking-widest text-beige/60 font-medium block mt-0.5 font-sans">RESTRO</span>
+          </div>
+        </a>
+
+        <!-- Desktop Navigation anchor items -->
+        <nav class="hidden lg:flex items-center gap-7">
+          <a href="#home" class="nav-link nav-scroll-trigger text-gold text-xs uppercase tracking-widest font-semibold flex flex-col items-center gap-1 group relative transition-colors" data-sec="home">
+            <span>Home</span>
+            <span class="nav-dot h-1 w-1 rounded-full bg-gold transition-opacity duration-300"></span>
+          </a>
+          <a href="#about" class="nav-link nav-scroll-trigger text-ivory/80 hover:text-gold text-xs uppercase tracking-widest font-semibold flex flex-col items-center gap-1 group relative transition-colors" data-sec="about">
+            <span>Our Story</span>
+            <span class="nav-dot h-1 w-1 rounded-full bg-gold opacity-0 transition-opacity duration-300"></span>
+          </a>
+          <a href="#signature" class="nav-link nav-scroll-trigger text-ivory/80 hover:text-gold text-xs uppercase tracking-widest font-semibold flex flex-col items-center gap-1 group relative transition-colors" data-sec="signature">
+            <span>Signatures</span>
+            <span class="nav-dot h-1 w-1 rounded-full bg-gold opacity-0 transition-opacity duration-300"></span>
+          </a>
+          <a href="#menu" class="nav-link nav-scroll-trigger text-ivory/80 hover:text-gold text-xs uppercase tracking-widest font-semibold flex flex-col items-center gap-1 group relative transition-colors" data-sec="menu">
+            <span>Menu</span>
+            <span class="nav-dot h-1 w-1 rounded-full bg-gold opacity-0 transition-opacity duration-300"></span>
+          </a>
+          <a href="#booking" class="nav-link nav-scroll-trigger text-ivory/80 hover:text-gold text-xs uppercase tracking-widest font-semibold flex flex-col items-center gap-1 group relative transition-colors" data-sec="booking">
+            <span>Reserve Table</span>
+            <span class="nav-dot h-1 w-1 rounded-full bg-gold opacity-0 transition-opacity duration-300"></span>
+          </a>
+          <a href="#events" class="nav-link nav-scroll-trigger text-ivory/80 hover:text-gold text-xs uppercase tracking-widest font-semibold flex flex-col items-center gap-1 group relative transition-colors" data-sec="events">
+            <span>Banquets</span>
+            <span class="nav-dot h-1 w-1 rounded-full bg-gold opacity-0 transition-opacity duration-300"></span>
+          </a>
+          <a href="#gallery" class="nav-link nav-scroll-trigger text-ivory/80 hover:text-gold text-xs uppercase tracking-widest font-semibold flex flex-col items-center gap-1 group relative transition-colors" data-sec="gallery">
+            <span>Gallery</span>
+            <span class="nav-dot h-1 w-1 rounded-full bg-gold opacity-0 transition-opacity duration-300"></span>
+          </a>
+          <a href="#contact" class="nav-link nav-scroll-trigger text-ivory/80 hover:text-gold text-xs uppercase tracking-widest font-semibold flex flex-col items-center gap-1 group relative transition-colors" data-sec="contact">
+            <span>Chariot Route</span>
+            <span class="nav-dot h-1 w-1 rounded-full bg-gold opacity-0 transition-opacity duration-300"></span>
+          </a>
+        </nav>
+
+        <!-- Stately Right Header Action Bar (Actions) -->
+        <div class="flex items-center gap-4">
+          
+          <!-- Direct support Call Dial shortcut -->
+          <a href="#owner" class="nav-scroll-trigger hidden md:flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-gold/5 hover:bg-gold/10 border border-gold/25 text-gold text-[10px] uppercase font-bold tracking-widest transition-all" data-sec="owner">
+            <i data-lucide="phone" class="w-3.5 h-3.5 animate-pulse"></i>
+            <span>Patron Direct</span>
+          </a>
+
+          <!-- Royal Courier Shopping Cart Trigger Button -->
+          <button 
+            id="cart-drawer-trigger-indicator"
+            class="cart-drawer-trigger relative flex items-center justify-center h-10 w-10 rounded-full border border-gold/20 hover:border-gold text-gold hover:text-amber glassmorphism transition-all duration-300 cursor-pointer shadow-md"
+          >
+            <!-- Badge count alert -->
+            <span class="header-cart-badges absolute -top-1 -right-1 h-5 w-5 rounded-full bg-saffron text-maroon font-black font-mono text-[10px] flex items-center justify-center scale-0 border border-maroon leading-none">
+              0
+            </span>
+            <i data-lucide="shopping-bag" class="w-4 h-4"></i>
+          </button>
+
+          <!-- Mobile Nav Toggle button -->
+          <button 
+            id="mobile-nav-toggle-btn"
+            class="flex lg:hidden items-center justify-center h-10 w-10 rounded-full border border-gold/20 text-gold glassmorphism focus:outline-none transition-colors"
+          >
+            <i data-lucide="menu" class="w-5 h-5"></i>
+          </button>
+
+        </div>
+      </div>
+
+      <!-- Mobile navigation links list -->
+      <div id="mobile-nav-block" class="hidden lg:hidden bg-maroon/95 border-b border-gold/15 p-6 animate-fade-in absolute w-full top-full left-0 space-y-4">
+        <!-- Active order mobile quick alert -->
+        <div id="active-tracker-mobile-spin-trigger" class="hidden p-3.5 rounded-2xl bg-gold/10 border border-gold/20 text-left items-center justify-between flex cursor-pointer">
+          <div class="flex items-center gap-3">
+            <i data-lucide="truck" class="text-gold animate-bounce"></i>
+            <div>
+              <span class="font-sans text-xs font-bold text-gold">Grand Feast Courier Active</span>
+              <p class="text-[9px] text-beige/50 block">Click here to track your delivery status &gt;</p>
+            </div>
+          </div>
+          <span class="h-3 w-3 rounded-full bg-emerald animate-ping"></span>
+        </div>
+
+        <div class="grid grid-cols-2 gap-4">
+          <a href="#home" class="nav-scroll-trigger text-gold text-xs font-bold uppercase tracking-widest block bg-white/5 py-4 px-4 rounded-xl text-center" data-sec="home">Home</a>
+          <a href="#about" class="nav-scroll-trigger text-beige text-xs font-medium uppercase tracking-widest block bg-white/5 py-4 px-4 rounded-xl text-center" data-sec="about">Story</a>
+          <a href="#signature" class="nav-scroll-trigger text-beige text-xs font-medium uppercase tracking-widest block bg-white/5 py-4 px-4 rounded-xl text-center" data-sec="signature">Signature</a>
+          <a href="#menu" class="nav-scroll-trigger text-beige text-xs font-medium uppercase tracking-widest block bg-white/5 py-4 px-4 rounded-xl text-center" data-sec="menu">Menu</a>
+          <a href="#booking" class="nav-scroll-trigger text-beige text-xs font-medium uppercase tracking-widest block bg-white/5 py-4 px-4 rounded-xl text-center" data-sec="booking">Booking</a>
+          <a href="#events" class="nav-scroll-trigger text-beige text-xs font-medium uppercase tracking-widest block bg-white/5 py-4 px-4 rounded-xl text-center" data-sec="events">Banquets</a>
+          <a href="#gallery" class="nav-scroll-trigger text-beige text-xs font-medium uppercase tracking-widest block bg-white/5 py-4 px-4 rounded-xl text-center" data-sec="gallery">Gallery</a>
+          <a href="#contact" class="nav-scroll-trigger text-beige text-xs font-medium uppercase tracking-widest block bg-white/5 py-4 px-4 rounded-xl text-center" data-sec="contact">Roadmap</a>
+        </div>
+      </div>
+    </header>
+
+
+    <!-- SECTION: HERO (HOME) -->
+    <section 
+      id="home" 
+      class="min-h-screen relative overflow-hidden flex items-center pt-28"
+    >
+      <!-- Background Graphic Media -->
+      <div class="absolute inset-0 z-0">
+        <img 
+          src="https://images.unsplash.com/photo-1514933651103-005eec06c04b?auto=format&fit=crop&w=1920&q=80" 
+          alt="Palace Backdrop" 
+          class="w-full h-full object-cover brightness-[0.23] contrast-[1.05]"
+          referrerpolicy="no-referrer"
+        />
+        <!-- Radial gold glow behind main container content -->
+        <div class="absolute inset-0 bg-gradient-to-t from-[#0A0204] via-transparent to-black/35"></div>
+        <div class="absolute inset-y-0 inset-x-0 radial-gold-glow pointer-events-none opacity-40"></div>
+      </div>
+
+      <!-- Floating Spice Particles overlay (No asset - Emoji elements mapped to keyframes animation checks) -->
+      <div class="absolute inset-0 pointer-events-none z-10 select-none overflow-hidden hidden md:block">
+        <span class="absolute text-3xl opacity-30 top-1/4 left-10 animate-float-spice-slow">🌶️</span>
+        <span class="absolute text-2xl opacity-20 top-2/3 left-1/4 animate-float-spice-medium">🌿</span>
+        <span class="absolute text-3xl opacity-25 top-1/3 right-1/4 animate-float-spice-slow">⭐</span>
+        <span class="absolute text-xl opacity-20 top-3/4 right-10 animate-float-spice-medium">🧅</span>
+      </div>
+
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-20 text-center w-full">
+        
+        <!-- Welcome badge emblem -->
+        <div class="inline-flex items-center gap-1 px-3 py-1 bg-maroon/60 border border-gold/20 text-gold text-[10px] sm:text-xs font-bold uppercase tracking-widest rounded-full mb-6">
+          <i data-lucide="sparkles" class="w-3 h-3 text-gold animate-bounce"></i>
+          <span>Welcome To The Court of Culinary Flavors</span>
+        </div>
+
+        <!-- Majestic Title Pairings -->
+        <h1 class="font-display font-medium text-4xl sm:text-6xl lg:text-7xl text-ivory tracking-wider mb-6 text-gradient bg-clip-text bg-gradient-to-b from-[#FFFFF0] via-[#F5F5DC] to-gold">
+          Experience The <span class="text-gold italic font-serif">Royal Taste</span> Of India
+        </h1>
+        
+        <p class="text-xs sm:text-sm lg:text-base text-beige/80 font-light max-w-2xl mx-auto leading-relaxed mb-10">
+          Step into a state-of-the-art culinary sanctuary where 19th-century royal Indian recipes unite with modern 5-star palatial aesthetic luxury. Hand-ground secret spices, coal-roasted tandoors, and spotless service await your throne.
+        </p>
+
+        <!-- Hero Actions group Call CTA buttons -->
+        <div class="flex flex-col sm:flex-row items-center justify-center gap-4.5 max-w-md mx-auto">
+          <button 
+            onclick="scrollToSection('booking')"
+            class="w-full sm:w-auto px-8 py-4 rounded-full bg-gradient-to-r from-gold via-amber to-saffron hover:opacity-95 text-maroon text-xs uppercase font-extrabold tracking-widest animate-gold-pulse active:scale-95 transition-transform cursor-pointer shadow-xl shadow-gold/10"
+          >
+            Assure Royal Seating
+          </button>
+          
+          <button 
+            onclick="scrollToSection('menu')"
+            class="w-full sm:w-auto px-8 py-4 rounded-full border border-gold/40 text-gold hover:bg-gold/5 hover:border-gold hover:text-amber text-xs uppercase font-bold tracking-widest active:scale-95 transition-all cursor-pointer backdrop-blur-sm"
+          >
+            Explore Gastronomy menu
+          </button>
+        </div>
+
+        <!-- Sovereign trust anchors -->
+        <div class="grid grid-cols-3 gap-4 max-w-md mx-auto border-t border-gold/15 pt-10 mt-14 text-center">
+          <div>
+            <span class="font-display font-black text-gold text-lg block leading-none">36 Hrs</span>
+            <span class="text-[8px] uppercase tracking-widest text-beige/50 block mt-1.5 font-sans">Slow Simmer Dal</span>
+          </div>
+          <div class="border-x border-gold/15">
+            <span class="font-display font-black text-gold text-lg block leading-none">17 Herbs</span>
+            <span class="text-[8px] uppercase tracking-widest text-beige/50 block mt-1.5 font-sans">Secret Marinations</span>
+          </div>
+          <div>
+            <span class="font-display font-black text-gold text-lg block leading-none">Zero</span>
+            <span class="text-[8px] uppercase tracking-widest text-beige/50 block mt-1.5 font-sans">Chemical Additives</span>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+
+    <!-- SECTION: OUR STORY (ABOUT) -->
+    <section 
+      id="about" 
+      class="py-24 relative overflow-hidden bg-gradient-to-b from-[#0A0204] via-[#120306] to-[#0D0205]"
+    >
+      <div class="absolute top-1/4 right-0 w-80 h-80 bg-gold/5 rounded-full filter blur-[120px] pointer-events-none"></div>
+
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+        
+        <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
+          
+          <!-- Collage Column (Left) -->
+          <div class="lg:col-span-5 relative grid grid-cols-2 gap-4">
+            
+            <div class="space-y-4">
+              <div class="rounded-3xl overflow-hidden border border-gold/15 h-56 sm:h-64 shadow-2xl relative group">
+                <img 
+                  src="https://images.unsplash.com/photo-1543353071-10c8ba85a904?auto=format&fit=crop&w=600&q=80" 
+                  alt="Traditional Saffron Herbs" 
+                  class="w-full h-full object-cover filter brightness-[0.83] group-hover:scale-103 transition-transform duration-500"
+                  referrerpolicy="no-referrer"
+                />
+                <div class="absolute inset-0 bg-maroon/20"></div>
+              </div>
+              <div class="rounded-3xl overflow-hidden border border-gold/15 h-36 sm:h-44 shadow-xl relative group">
+                <img 
+                  src="https://images.unsplash.com/photo-1628294895950-9805252327bc?auto=format&fit=crop&w=600&q=80" 
+                  alt="Tandoor Char Fire" 
+                  class="w-full h-full object-cover filter brightness-[0.83] group-hover:scale-103 transition-transform duration-500"
+                  referrerpolicy="no-referrer"
+                />
+                <div class="absolute inset-0 bg-maroon/20"></div>
+              </div>
+            </div>
+
+            <div class="space-y-4 pt-10">
+              <div class="rounded-3xl overflow-hidden border border-gold/15 h-36 sm:h-44 shadow-xl relative group">
+                <img 
+                  src="https://images.unsplash.com/photo-1511795409834-ef04bbd61622?auto=format&fit=crop&w=600&q=80" 
+                  alt="Royal Wedding tables" 
+                  class="w-full h-full object-cover filter brightness-[0.83] group-hover:scale-103 transition-transform duration-500"
+                  referrerpolicy="no-referrer"
+                />
+                <div class="absolute inset-0 bg-maroon/20"></div>
+              </div>
+              <div class="rounded-3xl overflow-hidden border border-gold/25 h-56 sm:h-64 shadow-2xl relative group p-1 bg-gradient-to-tr from-gold to-saffron">
+                <img 
+                  src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&w=600&q=80" 
+                  alt="Authentic Chef plating" 
+                  class="w-full h-full object-cover rounded-2xl filter brightness-[0.85] group-hover:brightness-[0.93] transition-all"
+                  referrerpolicy="no-referrer"
+                />
+              </div>
+            </div>
+
+            <!-- Absolute decorative visual stamp -->
+            <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 h-20 w-20 rounded-full bg-gold/15 backdrop-blur-md border border-gold/30 flex flex-col justify-center items-center text-center -rotate-12 pointer-events-none">
+              <span class="font-display font-black text-gold text-xs leading-none">EST. 2016</span>
+              <span class="text-[7px] font-sans uppercase font-bold text-white mt-1">HERITAGE</span>
+            </div>
+
+          </div>
+
+          <!-- Stately narrative content (Right) -->
+          <div class="lg:col-span-7 flex flex-col gap-6 text-left">
+            
+            <div class="space-y-2">
+              <span class="text-xs uppercase tracking-widest text-saffron font-bold block">Legacy of Indian Gastronomy</span>
+              <h2 class="font-display font-medium text-3xl sm:text-4xl text-ivory tracking-wide leading-none">
+                Stately Story of Our <span class="text-gold italic font-serif">Ancestral Spices</span>
+              </h2>
+            </div>
+
+            <p class="text-xs sm:text-sm text-beige/80 font-light leading-relaxed">
+              At Shivansh Restro, we don’t just cook; we resurrect the culinary codices of royal Indian empires once served inside sandstone fortress chambers of Kashmir, Awadh, and New Delhi. Founded under the guidance of Patron <strong>Shivansh Agrawal</strong>, our kitchen is governed by traditional techniques where coal tandoor hearths are fed real clay coals and spices are custom crushed on ancient millstones daily by Chef Vineet Rawat.
+            </p>
+
+            <blockquote class="border-l-2 border-gold pl-4 py-1 italic font-serif text-sm text-gold bg-gold/5 rounded-r-xl pr-3">
+              "We cook each gravy as if it is an offering to the gods of flavor. There are no shortcuts, only absolute culinary devotion to regional heritage."
+              <cite class="block font-sans text-[10px] uppercase tracking-wider font-bold text-beige/50 not-italic mt-1.5">— Chef Vineet Rawat, Lead Gastronomer</cite>
+            </blockquote>
+
+            <!-- Dynamic grid bullet list -->
+            <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 mt-2">
+              <div class="flex items-start gap-2.5">
+                <div class="h-6 w-6 rounded bg-gold/10 border border-gold/30 flex items-center justify-center shrink-0 mt-0.5 text-gold">
+                  <i data-lucide="check" class="w-3.5 h-3.5"></i>
+                </div>
+                <div>
+                  <span class="font-display font-bold text-xs text-gold block">100% Organic Spices</span>
+                  <p class="text-[10px] text-beige/65 mt-0.5 font-light">Custom sourced from Kashmir valleys.</p>
+                </div>
+              </div>
+
+              <div class="flex items-start gap-2.5">
+                <div class="h-6 w-6 rounded bg-gold/10 border border-gold/30 flex items-center justify-center shrink-0 mt-0.5 text-gold">
+                  <i data-lucide="check" class="w-3.5 h-3.5"></i>
+                </div>
+                <div>
+                  <span class="font-display font-bold text-xs text-gold block">Clay-pot Dum Cooked</span>
+                  <p class="text-[10px] text-beige/65 mt-0.5 font-light">Slow sealed on brick mud ovens.</p>
+                </div>
+              </div>
+
+              <div class="flex items-start gap-2.5">
+                <div class="h-6 w-6 rounded bg-gold/10 border border-gold/30 flex items-center justify-center shrink-0 mt-0.5 text-gold">
+                  <i data-lucide="check" class="w-3.5 h-3.5"></i>
+                </div>
+                <div>
+                  <span class="font-display font-bold text-xs text-gold block">Cold-pressed Mustard Oils</span>
+                  <p class="text-[10px] text-beige/65 mt-0.5 font-light">Extracted raw on traditional local press.</p>
+                </div>
+              </div>
+
+              <div class="flex items-start gap-2.5">
+                <div class="h-6 w-6 rounded bg-gold/10 border border-gold/30 flex items-center justify-center shrink-0 mt-0.5 text-gold">
+                  <i data-lucide="check" class="w-3.5 h-3.5"></i>
+                </div>
+                <div>
+                  <span class="font-display font-bold text-xs text-gold block">Clarified Pure Buffalo Butter</span>
+                  <p class="text-[10px] text-beige/65 mt-0.5 font-light">Churned fresh from natural farm dairies.</p>
+                </div>
+              </div>
+            </div>
+
+          </div>
+
+        </div>
+
+      </div>
+    </section>
+
+
+    <!-- SECTION: SIGNATURES (CAROUSEL) -->
+    <section 
+      id="signature" 
+      class="py-24 relative overflow-hidden bg-gradient-to-b from-[#0D0205] to-[#0A0204]"
+    >
+      <div class="absolute bottom-1/4 left-0 w-80 h-80 bg-saffron/5 rounded-full filter blur-[120px] pointer-events-none"></div>
+
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+        
+        <!-- Header details -->
+        <div class="flex flex-col md:flex-row md:items-end justify-between mb-16 gap-6">
+          <div class="text-left max-w-xl">
+            <span class="text-xs uppercase tracking-widest text-saffron font-bold block">Artisanal Masterpieces</span>
+            <h2 class="font-display font-medium text-3xl sm:text-4xl text-ivory tracking-wide font-serif mt-2">
+              Our Sovereign <span class="text-gold italic">Luxury Signature</span> Dishes
+            </h2>
+            <p class="text-xs sm:text-sm text-beige/70 font-light mt-3">
+              Indulge in our pre-selected crown creations beautifully presented with saffron infusions, coal charcoal smoke techniques, and premium gold garnishes.
+            </p>
+          </div>
+
+          <!-- Slider action buttons -->
+          <div class="flex items-center gap-3">
+            <button 
+              id="sig-scroll-left-btn"
+              class="h-10 w-10 rounded-full border border-gold/20 hover:border-gold text-gold hover:text-amber bg-[#180509]/80 flex items-center justify-center backdrop-blur transition-all active:scale-95 cursor-pointer"
+              aria-label="Previous signature"
+            >
+              <i data-lucide="chevron-left" class="w-5 h-5"></i>
+            </button>
+            <button 
+              id="sig-scroll-right-btn"
+              class="h-10 w-10 rounded-full border border-gold/20 hover:border-gold text-gold hover:text-amber bg-[#180509]/80 flex items-center justify-center backdrop-blur transition-all active:scale-95 cursor-pointer"
+              aria-label="Next signature"
+            >
+              <i data-lucide="chevron-right" class="w-5 h-5"></i>
+            </button>
+          </div>
+        </div>
+
+        <!-- Snap Carriage container slider -->
+        <div 
+          id="signature-carousel-inner"
+          class="flex gap-6 overflow-x-auto snap-x snap-mandatory pb-6 pt-2 select-none"
+        >
+          <!-- Dynamic Signature Items are injected via app.js -->
+        </div>
+
+      </div>
+    </section>
+
+
+    <!-- SECTION: GASTRONOMY CATALOG EXPLORER (MENU) -->
+    <section 
+      id="menu" 
+      class="py-24 relative overflow-hidden bg-gradient-to-b from-[#0A0204] via-[#100204] to-[#0D0205]"
+    >
+      <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-96 h-96 radial-gold-glow pointer-events-none opacity-20"></div>
+
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+        
+        <!-- Header -->
+        <div class="text-center max-w-2xl mx-auto mb-16">
+          <span class="text-xs uppercase tracking-widest text-saffron font-bold block">The Royal Banquet Menu</span>
+          <h2 class="font-display font-medium text-3xl sm:text-4xl text-ivory tracking-wide font-serif mt-2">
+            Explore Our Curated <span class="text-gold italic">Grand Delicacies</span>
+          </h2>
+          <p class="text-xs sm:text-sm text-beige/70 font-light mt-3">
+            Search our comprehensive, filterable catalog indexing vegetarian choices, spices metrics, and royal beverages.
+          </p>
+        </div>
+
+        <!-- Filters drawer console bar -->
+        <div class="p-6 sm:p-8 rounded-3xl bg-[#160407]/90 border border-gold/15 glassmorphism shadow-2xl mb-12 flex flex-col gap-6">
+          
+          <!-- Search box & Selector categories -->
+          <div class="grid grid-cols-1 lg:grid-cols-12 gap-5 items-center">
+            
+            <!-- Search bar -->
+            <div class="lg:col-span-4 relative">
+              <input 
+                id="menu-item-search"
+                type="text" 
+                placeholder="Search delicacies (samosa, naan, lassi...)" 
+                class="w-full px-5 py-3.5 pl-11 rounded-full bg-[#0A0204] border border-gold/20 text-xs text-white placeholder-beige/40 focus:border-gold focus:outline-none focus:ring-1 focus:ring-gold transition-all"
+              />
+              <i data-lucide="search" class="absolute left-4 top-1/2 -translate-y-1/2 text-gold w-4 h-4"></i>
+            </div>
+
+            <!-- Diet Switches -->
+            <div class="lg:col-span-8 flex flex-wrap gap-3 items-center justify-start lg:justify-end">
+              
+              <!-- Veg Switch -->
+              <button 
+                id="menu-filter-veg"
+                class="flex items-center gap-2 px-4.5 py-3 rounded-full border border-gold/15 text-xs text-beige/80 hover:border-gold hover:text-gold transition-all cursor-pointer font-medium"
+              >
+                <i data-lucide="leaf" class="w-3.5 h-3.5 text-emerald"></i>
+                <span>Vegetarian Only</span>
+              </button>
+
+              <!-- Spicy Switch -->
+              <button 
+                id="menu-filter-spicy"
+                class="flex items-center gap-2 px-4.5 py-3 rounded-full border border-gold/15 text-xs text-beige/80 hover:border-gold hover:text-gold transition-all cursor-pointer font-medium"
+              >
+                <i data-lucide="flame" class="w-3.5 h-3.5 text-saffron"></i>
+                <span>Royal Fire (Spicy)</span>
+              </button>
+
+            </div>
+
+          </div>
+
+          <!-- Catalog category pill tabs -->
+          <div class="menu-category-selectors flex flex-wrap gap-2 border-t border-gold/10 pt-6">
+            <button data-cat="all" class="px-4 py-2.5 rounded-full border border-gold/15 bg-gradient-to-r from-gold via-amber to-saffron text-maroon font-black text-xs uppercase tracking-wider transition-all duration-300 cursor-pointer">All Offerings</button>
+            <button data-cat="starters" class="px-4 py-2.5 rounded-full border border-gold/15 text-beige/70 hover:border-gold hover:text-gold text-xs uppercase tracking-wider transition-all duration-300 cursor-pointer">Starters</button>
+            <button data-cat="main_course" class="px-4 py-2.5 rounded-full border border-gold/15 text-beige/70 hover:border-gold hover:text-gold text-xs uppercase tracking-wider transition-all duration-300 cursor-pointer">Main Course</button>
+            <button data-cat="tandoori" class="px-4 py-2.5 rounded-full border border-gold/15 text-beige/70 hover:border-gold hover:text-gold text-xs uppercase tracking-wider transition-all duration-300 cursor-pointer">Tandoori Specials</button>
+            <button data-cat="biryani" class="px-4 py-2.5 rounded-full border border-gold/15 text-beige/70 hover:border-gold hover:text-gold text-xs uppercase tracking-wider transition-all duration-300 cursor-pointer">Biryani & Rice</button>
+            <button data-cat="south_indian" class="px-4 py-2.5 rounded-full border border-gold/15 text-beige/70 hover:border-gold hover:text-gold text-xs uppercase tracking-wider transition-all duration-300 cursor-pointer">South Indian</button>
+            <button data-cat="chinese" class="px-4 py-2.5 rounded-full border border-gold/15 text-beige/70 hover:border-gold hover:text-gold text-xs uppercase tracking-wider transition-all duration-300 cursor-pointer">Chinese</button>
+            <button data-cat="desserts" class="px-4 py-2.5 rounded-full border border-gold/15 text-beige/70 hover:border-gold hover:text-gold text-xs uppercase tracking-wider transition-all duration-300 cursor-pointer">Desserts</button>
+            <button data-cat="beverages" class="px-4 py-2.5 rounded-full border border-gold/15 text-beige/70 hover:border-gold hover:text-gold text-xs uppercase tracking-wider transition-all duration-300 cursor-pointer">Beverages</button>
+          </div>
+
+        </div>
+
+        <!-- Menu items cards canvas grid -->
+        <div 
+          id="menu-delicacies-grid"
+          class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6"
+        >
+          <!-- Injected dynamically via app.js -->
+        </div>
+
+      </div>
+    </section>
+
+
+    <!-- SECTION: ROYAL NOBLE RESERVATION (BOOKING) -->
+    <section 
+      id="booking" 
+      class="py-24 relative overflow-hidden bg-gradient-to-b from-[#0D0205] via-[#120306] to-[#0A0204]"
+    >
+      <div class="absolute top-1/4 right-0 w-80 h-80 bg-gold/5 rounded-full filter blur-[120px] pointer-events-none"></div>
+
+      <div class="max-w-4xl mx-auto px-4 sm:px-6 relative z-10 text-center">
+        
+        <!-- Headers -->
+        <div class="max-w-2xl mx-auto mb-16 text-center">
+          <span class="text-xs uppercase tracking-widest text-saffron font-bold block">Palace Seating Ledgers</span>
+          <h2 class="font-display font-medium text-3xl sm:text-4xl text-ivory tracking-wide font-serif mt-2">
+            Assure Your <span class="text-gold italic">Auspicious Dining</span> Table
+          </h2>
+          <p class="text-xs sm:text-sm text-beige/70 font-light mt-3 text-center">
+            Zero booking commissions. Reserve your royal table or private partition chambers instantly for memorable celebrations.
+          </p>
+        </div>
+
+        <!-- Booking card viewport panels -->
+        <div class="bg-[#180509]/80 rounded-3xl p-8 sm:p-12 border border-gold/25 glassmorphism shadow-2xl relative">
+          
+          <!-- Outer border dash decoration -->
+          <div class="absolute inset-2 border border-dashed border-gold/15 rounded-2xl pointer-events-none"></div>
+
+          <!-- VIEW 1: Form -->
+          <div id="noble-reservation-screen-form" class="space-y-8 relative z-10 text-left">
+            
+            <form id="noble-table-reservation-form" class="space-y-8">
+              
+              <!-- 1. Guest Slider selections -->
+              <div class="space-y-4">
+                <label class="text-[10px] uppercase font-bold text-gold tracking-widest block font-sans">Number of Noble Guests</label>
+                <div class="grid grid-cols-5 gap-3 max-w-lg">
+                  <button type="button" data-count="1" class="guest-num-card-btn py-3 rounded-xl border border-gold/15 text-beige hover:border-gold transition-all text-xs cursor-pointer">1 Guest</button>
+                  <button type="button" data-count="2" class="guest-num-card-btn py-3 rounded-xl border border-gold/15 text-beige hover:border-gold transition-all text-xs cursor-pointer bg-gradient-to-tr from-gold via-amber to-saffron text-maroon font-black border-gold">2 Guests</button>
+                  <button type="button" data-count="4" class="guest-num-card-btn py-3 rounded-xl border border-gold/15 text-beige hover:border-gold transition-all text-xs cursor-pointer">4 Guests</button>
+                  <button type="button" data-count="6" class="guest-num-card-btn py-3 rounded-xl border border-gold/15 text-beige hover:border-gold transition-all text-xs cursor-pointer">6 Guests</button>
+                  <button type="button" data-count="10" class="guest-num-card-btn py-3 rounded-xl border border-gold/15 text-beige hover:border-gold transition-all text-xs cursor-pointer">10+ VIP</button>
+                </div>
+              </div>
+
+              <!-- 2. Date selects Tape -->
+              <div class="space-y-3">
+                <label class="text-[10px] uppercase font-bold text-gold tracking-widest block font-sans">Select Auspicious Date</label>
+                <div id="auspicious-dates-tape" class="flex gap-3 overflow-x-auto pb-2 scroll-smooth">
+                  <!-- Generated dynamic bullets via app.js -->
+                </div>
+              </div>
+
+              <!-- 3. Time select Tape -->
+              <div class="space-y-3">
+                <label class="text-[10px] uppercase font-bold text-gold tracking-widest block font-sans">Auspicious Time Slot</label>
+                <div id="auspicious-times-tape" class="flex gap-2.5 overflow-x-auto pb-2 scroll-smooth">
+                  <!-- Generated dynamic slots via app.js -->
+                </div>
+              </div>
+
+              <!-- 4. Host particulars elements -->
+              <div class="border-t border-gold/10 pt-6 mt-6">
+                <label class="text-[10px] uppercase font-bold text-gold tracking-widest block font-sans mb-4">Host Contact Particulars</label>
+                
+                <div class="grid grid-cols-1 sm:grid-cols-3 gap-5">
+                  <div class="space-y-1">
+                    <input 
+                      id="res-customer-name"
+                      type="text" 
+                      placeholder="Title Name (e.g. Maharaja Sharma)" 
+                      required 
+                      class="w-full px-4 py-3 bg-[#0A0204] border border-gold/25 rounded-xl text-xs text-white placeholder-beige/40 focus:border-gold focus:outline-none"
+                    />
+                  </div>
+                  <div class="space-y-1">
+                    <input 
+                      id="res-customer-phone"
+                      type="tel" 
+                      placeholder="Phone Mobile Number" 
+                      required 
+                      class="w-full px-4 py-3 bg-[#0A0204] border border-gold/25 rounded-xl text-xs text-white placeholder-beige/40 focus:border-gold focus:outline-none"
+                    />
+                  </div>
+                  <div class="space-y-1">
+                    <input 
+                      id="res-customer-email"
+                      type="email" 
+                      placeholder="His Majesty's Email" 
+                      required 
+                      class="w-full px-4 py-3 bg-[#0A0204] border border-gold/25 rounded-xl text-xs text-white placeholder-beige/40 focus:border-gold focus:outline-none"
+                    />
+                  </div>
+                </div>
+
+                <div class="mt-4">
+                  <textarea 
+                    id="res-special-reqs"
+                    rows="2" 
+                    placeholder="Dietary protocols or special seating constraints (e.g. partition quiet cabin)..." 
+                    class="w-full px-4 py-3 bg-[#0A0204] border border-gold/25 rounded-xl text-xs text-white placeholder-beige/40 focus:border-gold focus:outline-none"
+                  ></textarea>
+                </div>
+              </div>
+
+              <button 
+                type="submit"
+                class="w-full py-4 text-xs font-extrabold uppercase tracking-widest rounded-full bg-gradient-to-r from-gold via-amber to-saffron text-maroon hover:opacity-95 cursor-pointer text-center relative z-10 transition-opacity"
+              >
+                Verify Seating Ledger Reservation
+              </button>
+
+            </form>
+
+          </div>
+
+          <!-- VIEW 2: Ticket Ticket Success Output (Controlled by app.js) -->
+          <div id="noble-reservation-screen-ticket" class="hidden relative z-10 space-y-6">
+            <!-- Dynamic elegant confirmed receipt generated inside app.js -->
+          </div>
+
+        </div>
+
+      </div>
+    </section>
+
+
+    <!-- SECTION: BANQUETS CONCIERGE & PRICER (EVENTS) -->
+    <section 
+      id="events" 
+      class="py-24 relative overflow-hidden bg-gradient-to-b from-[#0A0204] to-[#140409]"
+    >
+      <div class="absolute bottom-1/4 left-0 w-80 h-80 bg-gold/5 rounded-full filter blur-[120px] pointer-events-none"></div>
+
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+        
+        <!-- Titles -->
+        <div class="text-center max-w-2xl mx-auto mb-16">
+          <span class="text-xs uppercase tracking-widest text-saffron font-bold block">Palatial Banquets Concierge</span>
+          <h2 class="font-display font-medium text-3xl sm:text-4xl text-ivory tracking-wide font-serif mt-2">
+            Private Celebrations & <span class="text-gold italic">Sovereign Galas</span>
+          </h2>
+          <p class="text-xs sm:text-sm text-beige/70 font-light mt-3">
+            Host spectacular weddings, corporate summits, or luxury anniversaries. Set parameters below for real-time estimated ledger invoice projections.
+          </p>
+        </div>
+
+        <!-- Banquet content blocks grids -->
+        <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-stretch">
+          
+          <!-- Parameters selector side (Left) -->
+          <div class="lg:col-span-7 bg-[#1c060b]/80 border border-gold/20 p-8 sm:p-10 rounded-3xl glassmorphism text-left space-y-6 flex flex-col justify-between">
+            
+            <div id="banquet-negotiator-box-form" class="space-y-6">
+              
+              <!-- 1. Occasion select -->
+              <div class="space-y-3">
+                <label class="text-[10px] uppercase font-bold text-gold tracking-widest block font-sans">1. Select Occasion</label>
+                <div class="grid grid-cols-1 sm:grid-cols-3 gap-4">
+                  
+                  <div data-occ="Weddings" class="banquet-occasion-card px-4 py-4 rounded-2xl bg-maroon/65 border border-gold text-white shadow-2xl shadow-gold/10 flex items-center justify-between cursor-pointer group">
+                    <div class="text-left">
+                      <span class="text-xs font-bold font-serif block">Royal Weddings</span>
+                      <span class="text-[8px] text-beige/50 block font-sans uppercase">Sitar & Canopies</span>
+                    </div>
+                    <i data-lucide="check-circle-2" class="active-check text-gold w-4 h-4"></i>
+                  </div>
+
+                  <div data-occ="Corporate Events" class="banquet-occasion-card px-4 py-4 rounded-2xl bg-gold/5 border border-gold/10 text-beige/80 hover:border-gold/30 flex items-center justify-between cursor-pointer group">
+                    <div class="text-left">
+                      <span class="text-xs font-bold font-serif block">Corporate Gala</span>
+                      <span class="text-[8px] text-beige/50 block font-sans uppercase">VIP Projector Rooms</span>
+                    </div>
+                    <i data-lucide="check-circle-2" class="active-check text-gold w-4 h-4 hidden animate-pulse"></i>
+                  </div>
+
+                  <div data-occ="Birthday Parties" class="banquet-occasion-card px-4 py-4 rounded-2xl bg-gold/5 border border-gold/10 text-beige/80 hover:border-gold/30 flex items-center justify-between cursor-pointer group">
+                    <div class="text-left">
+                      <span class="text-xs font-bold font-serif block">Social Parties</span>
+                      <span class="text-[8px] text-beige/50 block font-sans uppercase">Acoustic Soundstages</span>
+                    </div>
+                    <i data-lucide="check-circle-2" class="active-check text-gold w-4 h-4 hidden animate-pulse"></i>
+                  </div>
+
+                </div>
+              </div>
+
+              <!-- 2. Assembly slider -->
+              <div class="space-y-3">
+                <div class="flex justify-between items-center">
+                  <label class="text-[10px] uppercase font-bold text-gold tracking-widest block font-sans">2. Host Scale Size</label>
+                  <span id="banquet-guests-count-display" class="font-mono text-xs font-black text-gold">50 Noble Guests</span>
+                </div>
+                <input 
+                  id="banquet-guests-range"
+                  type="range" 
+                  min="20" 
+                  max="300" 
+                  value="50" 
+                  class="w-full accent-gold bg-gold/15 h-1.5 rounded-lg cursor-pointer"
+                />
+                <div class="flex justify-between text-[8px] text-beige/40">
+                  <span>20 Guests (Intimate room)</span>
+                  <span>150 Guests (Auditorium Hall)</span>
+                  <span>300 Guests (Sovereign Grand Ballroom)</span>
+                </div>
+              </div>
+
+              <!-- 3. Plating Selectors -->
+              <div class="space-y-3">
+                <label class="text-[10px] uppercase font-bold text-gold tracking-widest block font-sans">3. Dining Plating Luxury style</label>
+                <div class="grid grid-cols-1 sm:grid-cols-3 gap-4">
+                  
+                  <div id="dining-plate-silver" class="p-4 rounded-2xl border border-gold/15 bg-gold/5 hover:border-gold/30 text-left cursor-pointer transition-all">
+                    <div class="flex items-center justify-between mb-1">
+                      <span class="text-xs font-extrabold uppercase text-slate-300 font-sans">Silver Plates</span>
+                      <span class="plating-check-bullet h-2.5 w-2.5 rounded-full bg-slate-300 opacity-0"></span>
+                    </div>
+                    <span class="text-base font-black text-white block">$35 <span class="text-[9px] font-light text-beige/50">/plate</span></span>
+                    <p class="text-[8px] text-beige/65 mt-1">Samosas, Biryanis, Butter Gravy, standard linen drapes.</p>
+                  </div>
+
+                  <div id="dining-plate-gold" class="p-4 rounded-2xl bg-gradient-to-tr from-gold/20 to-saffron/20 border border-gold text-left cursor-pointer transition-all">
+                    <div class="flex items-center justify-between mb-1">
+                      <span class="text-xs font-extrabold uppercase text-gold font-sans">Royal Gold</span>
+                      <span class="plating-check-bullet h-2.5 w-2.5 rounded-full bg-gold"></span>
+                    </div>
+                    <span class="text-base font-black text-white block">$50 <span class="text-[9px] font-light text-beige/50">/plate</span></span>
+                    <p class="text-[8px] text-beige/65 mt-1">Signatures list, saffron lassi jars, custom flower carpets.</p>
+                  </div>
+
+                  <div id="dining-plate-diamond" class="p-4 rounded-2xl border border-gold/15 bg-gold/5 hover:border-gold/30 text-left cursor-pointer transition-all">
+                    <div class="flex items-center justify-between mb-1">
+                      <span class="text-xs font-extrabold uppercase text-cyan-200 font-sans">Empress Diamond</span>
+                      <span class="plating-check-bullet h-2.5 w-2.5 rounded-full bg-cyan-200 opacity-0"></span>
+                    </div>
+                    <span class="text-base font-black text-white block">$95 <span class="text-[9px] font-light text-beige/50">/plate</span></span>
+                    <p class="text-[8px] text-beige/65 mt-1">Unlimited mocktails bar, golden leaf pastries, sitar artists.</p>
+                  </div>
+
+                </div>
+              </div>
+
+              <!-- 4. Inquiry forms fields fields -->
+              <form id="stately-banquet-inquiry-form" class="space-y-4 border-t border-gold/10 pt-4 text-left">
+                <div class="grid grid-cols-2 gap-4">
+                  <div class="space-y-1">
+                    <label class="text-[8px] uppercase tracking-wider text-beige/50">Desired Event Date</label>
+                    <input id="banquet-booking-desired-date" type="date" required class="w-full px-4 py-3 bg-[#0A0204] border border-gold/25 rounded-xl text-xs text-white" />
+                  </div>
+                  <div class="space-y-1">
+                    <label class="text-[8px] uppercase tracking-wider text-beige/50">Noble Host Name</label>
+                    <input id="banquet-customer-full-title" type="text" placeholder="Maharani Sterling" required class="w-full px-4 py-3 bg-[#0A0204] border border-gold/25 rounded-xl text-xs text-white placeholder-beige/40 focus:outline-none" />
+                  </div>
+                </div>
+
+                <div class="grid grid-cols-2 gap-4">
+                  <div class="space-y-1">
+                    <label class="text-[8px] uppercase tracking-wider text-beige/50">Phone Number</label>
+                    <input id="banquet-customer-phone" type="tel" placeholder="+91 9102-1202" required class="w-full px-4 py-3 bg-[#0A0204] border border-gold/25 rounded-xl text-xs text-white placeholder-beige/40 focus:outline-none" />
+                  </div>
+                  <div class="space-y-1">
+                    <label class="text-[8px] uppercase tracking-wider text-beige/50">Email Address</label>
+                    <input id="banquet-customer-email" type="email" placeholder="host@kingdoms.gov" required class="w-full px-4 py-3 bg-[#0A0204] border border-gold/25 rounded-xl text-xs text-white placeholder-beige/40 focus:outline-none" />
+                  </div>
+                </div>
+
+                <button 
+                  type="submit"
+                  class="w-full py-3.5 text-xs font-black uppercase tracking-widest rounded-full bg-gradient-to-r from-gold to-saffron text-maroon hover:opacity-95 cursor-pointer text-center relative z-10 transition-opacity mt-2"
+                >
+                  Summon Event Planner
+                </button>
+              </form>
+
+            </div>
+
+            <!-- View 2: Generated receipt block -->
+            <div id="banquet-negotiator-box-receipt" class="hidden text-center space-y-4">
+              <!-- Dynamically constructed and injected on success -->
+            </div>
+
+          </div>
+
+          <!-- Pricer Estimation view Side (Right) -->
+          <div class="lg:col-span-5 bg-[#170408]/90 border border-gold/25 p-8 sm:p-10 rounded-3xl glassmorphism flex flex-col justify-between text-left relative shadow-2xl">
+            <div class="absolute inset-4 border border-dashed border-gold/15 rounded-2xl pointer-events-none"></div>
+
+            <div class="space-y-6 relative z-10">
+              <h3 class="font-display font-medium text-lg text-gold border-b border-gold/15 pb-3">Real-time Budget Ledgers</h3>
+              
+              <div class="space-y-4 text-xs font-sans text-beige/80">
+                <div class="flex justify-between">
+                  <span>Occasion Ceremony:</span>
+                  <span id="banquet-ledgers-occasion" class="font-bold text-white">Weddings</span>
+                </div>
+                <div class="flex justify-between">
+                  <span>Plating Rate Choice:</span>
+                  <span id="banquet-pricer-plate-sum" class="font-mono text-white font-bold">$50.00 each</span>
+                </div>
+                <div class="flex justify-between">
+                  <span>Host scale assembly:</span>
+                  <span id="banquet-pricer-guests-sum" class="font-bold text-white">50 Nobles</span>
+                </div>
+                <div class="flex justify-between">
+                  <span>Decorations & acoustics layout:</span>
+                  <span id="banquet-pricer-decor-bonus" class="font-mono text-white font-bold">$2500.00</span>
+                </div>
+
+                <div class="pt-5 border-t border-dashed border-gold/20 flex flex-col gap-1">
+                  <span class="text-[9px] uppercase tracking-wider text-gold font-bold">Estimated Grand Projection:</span>
+                  <span id="banquet-pricer-grand-estimation" class="font-mono text-3xl font-black text-saffron leading-none mt-2">$5000.00</span>
+                  <span class="text-[8px] text-beige/40 italic block mt-1 leading-normal">(*Estimated sums exclude 18% banquet service tax metrics.)</span>
+                </div>
+              </div>
+            </div>
+
+            <div class="relative z-10 pt-8 text-center text-xs text-beige/50 leading-relaxed font-light mt-6">
+              Need direct custom deductions on large corporate assemblies? Speak directly with owner Shivansh to secure matching vouchers.
+            </div>
+
+          </div>
+
+        </div>
+
+      </div>
+    </section>
+
+
+    <!-- SECTION: DIRECT PATRON DEALS SECTION -->
+    <section 
+      id="owner"
+      class="py-24 relative overflow-hidden bg-gradient-to-b from-[#140409] to-[#0D0204]"
+    >
+      <div class="absolute top-1/2 left-0 w-80 h-80 bg-gold/5 rounded-full filter blur-[120px] pointer-events-none"></div>
+
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+        
+        <!-- Section title -->
+        <div class="text-center max-w-2xl mx-auto mb-16">
+          <div class="inline-flex items-center gap-1.5 px-3 py-1 bg-maroon/80 border border-gold/15 text-gold font-sans text-xs font-semibold uppercase tracking-wider rounded-md mb-3">
+            <i data-lucide="sparkles" class="text-gold w-3 h-3"></i>
+            <span>Direct Patron Support</span>
+          </div>
+          <h2 class="font-display font-medium text-3xl sm:text-4xl text-ivory tracking-wide font-serif mb-4">
+            Exclusive Deals, <span class="text-gold">No Intermediaries</span>
+          </h2>
+          <p class="text-beige/70 text-sm font-light">
+            Skip booking commissions or agents. Discuss custom luxury anniversary menus, wedding tables, or corporate gatherings directly with the patron-proprietor himself.
+          </p>
+        </div>
+
+        <!-- Stately Business Card Row -->
+        <div class="max-w-4xl mx-auto grid grid-cols-1 md:grid-cols-12 gap-8 items-center bg-[#180509]/80 rounded-3xl p-8 sm:p-12 glassmorphism border border-gold/25 shadow-2xl relative">
+          
+          <!-- Owner portrait Column -->
+          <div class="md:col-span-5 relative flex justify-center">
+            <div class="relative h-64 w-64 rounded-2xl overflow-hidden p-1 bg-gradient-to-tr from-gold via-saffron to-maroon shadow-2xl">
+              <img 
+                src="https://images.unsplash.com/photo-1540569014015-19a7be504e3a?auto=format&fit=crop&w=500&q=80"
+                alt="Shivansh Agrawal"
+                class="w-full h-full object-cover rounded-xl filter brightness-[0.93]"
+                referrerpolicy="no-referrer"
+              />
+              <div class="absolute bottom-0 inset-x-0 bg-gradient-to-t from-maroon/90 to-transparent p-4 text-center">
+                <span class="text-[10px] uppercase font-bold text-gold tracking-widest block font-sans">Patron Since 2016</span>
+              </div>
+            </div>
+            
+            <!-- Pulsing visual aura -->
+            <div class="absolute inset-x-0 top-0 bottom-0 border border-dashed border-gold/15 rounded-3xl -z-10 animate-pulse pointer-events-none"></div>
+          </div>
+
+          <!-- Owner Information details & Actions Column -->
+          <div class="md:col-span-7 flex flex-col gap-5 text-left">
+            <div>
+              <span class="text-xs uppercase tracking-widest text-saffron font-bold flex items-center gap-1.5 mb-1 bg-saffron/10 px-3 py-1 rounded w-fit">
+                <i data-lucide="percent" class="text-gold w-3.5 h-3.5 animate-bounce"></i> Personalized Negotiations
+              </span>
+              <h3 class="font-display font-medium text-2xl text-ivory tracking-wide font-serif">Shivansh Agrawal</h3>
+              <p class="text-xs text-gold/80 italic font-light">Founder & Sovereign Patron</p>
+            </div>
+
+            <p class="text-xs sm:text-sm text-beige/80 leading-relaxed font-light">
+              "Namaste. I personally welcome your queries for wedding functions, private family celebrations, and elite catering. Click below to connect with me directly—we will design your grand feast within your ideal budget parameters."
+            </p>
+
+            <!-- Pulsing Hotlines -->
+            <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 pt-2">
+              <a 
+                href="tel:+91988227700"
+                class="flex items-center justify-center gap-2.5 px-6 py-3.5 rounded-xl bg-gold text-maroon text-xs uppercase font-extrabold tracking-wider hover:bg-amber transition-all cursor-pointer shadow-md shadow-gold/10 hover:shadow-gold/25 active:scale-95 group animate-gold-pulse"
+              >
+                <i data-lucide="phone" class="group-hover:rotate-12 transition-transform w-3.5 h-3.5"></i>
+                <span>Call Directly Now</span>
+              </a>
+
+              <a 
+                href="https://wa.me/91988227700?text=Hello%20Shivansh!%20I%20would%20like%20to%20discuss%20a%20private%20luxury%20banquet%20package%20at%20Shivansh%20Restro."
+                target="_blank"
+                rel="noreferrer"
+                class="flex items-center justify-center gap-2.5 px-6 py-3.5 rounded-xl bg-[#25D366] hover:bg-[#128C7E] text-white text-xs uppercase font-extrabold tracking-wider transition-all cursor-pointer shadow-md active:scale-95 group"
+              >
+                <i data-lucide="message-circle" class="group-hover:scale-110 transition-transform w-3.5 h-3.5"></i>
+                <span>Patron WhatsApp</span>
+              </a>
+            </div>
+
+            <!-- Interactive Package discount Negotiator link -->
+            <button
+              id="budget-negotiator-toggle-link"
+              class="mt-2 text-xs text-gold underline underline-offset-4 hover:text-amber text-left cursor-pointer font-semibold transition-all"
+            >
+              Want to simulate a budget custom package instantly? Click here &gt;
+            </button>
+          </div>
+
+        </div>
+
+        <!-- Simulated Negotiator slide form (Controlled via app.js) -->
+        <div id="budget-deal-expandable-section" class="max-w-4xl mx-auto overflow-hidden mt-6 hidden">
+          <div class="p-6 sm:p-8 rounded-3xl glassmorphism-light bg-gold/5 border border-gold/15 text-left space-y-6">
+            <div class="flex items-center gap-2">
+              <i data-lucide="sparkles" class="text-gold w-4 h-4"></i>
+              <h4 class="font-display font-medium text-xs text-gold uppercase tracking-widest">Patron Deal Estimator Converter</h4>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-6 items-end">
+              <div class="space-y-1.5">
+                <label class="text-[10px] uppercase font-bold text-gold tracking-widest">Proposed Guest Assembly Size</label>
+                <select
+                  id="negotiator-group-selection-box"
+                  class="w-full px-4 py-3 rounded-xl bg-[#0A0204] border border-gold/15 text-xs text-white focus:border-gold focus:outline-none"
+                >
+                  <option value="25">Cozy Gathering (20-30 guests)</option>
+                  <option value="50">Family Reunion (40-60 guests)</option>
+                  <option value="100">Stately Corporate Banquet (80-120 guests)</option>
+                  <option value="200">Palatial Wedding Ceremony (150-300 guests)</option>
+                </select>
+              </div>
+
+              <div class="space-y-1.5">
+                <label class="text-[10px] uppercase font-bold text-gold tracking-widest">Target Ceremony Type</label>
+                <div class="px-4 py-3 rounded-xl bg-[#0A0204] border border-gold/15 text-xs text-beige/50">
+                  Private Sovereign Event
+                </div>
+              </div>
+
+              <button
+                id="run-direct-deal-negotiate"
+                class="py-3 px-6 rounded-xl bg-gradient-to-r from-gold to-saffron text-maroon text-xs uppercase font-extrabold tracking-widest hover:opacity-95 cursor-pointer active:scale-95 transition-transform"
+              >
+                Generate Estimate Package
+              </button>
+            </div>
+
+            <!-- Injected outputs -->
+            <div id="direct-deal-generated-outputs" class="p-5 rounded-2xl bg-emerald/10 border border-emerald/30 space-y-4 hidden animate-fade-in">
+              <!-- Dynamically constructed and injected on click -->
+            </div>
+
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+
+    <!-- SECTION: EXPERIMENT CINEMA & TESTIMONIALS (REVIEWS) -->
+    <section 
+      id="reviews" 
+      class="py-24 relative overflow-hidden bg-gradient-to-b from-[#0D0204] to-[#0A0204]"
+    >
+      <div class="absolute bottom-1/4 right-0 w-80 h-80 bg-gold/5 rounded-full filter blur-[120px] pointer-events-none"></div>
+
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+        
+        <!-- Headers -->
+        <div class="text-center max-w-2xl mx-auto mb-16">
+          <span class="text-xs uppercase tracking-widest text-saffron font-bold block">Reviewers Chronicles</span>
+          <h2 class="font-display font-medium text-3xl sm:text-4xl text-ivory tracking-wide font-serif mt-2">
+            Praises From Our <span class="text-gold italic">Distinguished Nobles</span>
+          </h2>
+          <p class="text-xs sm:text-sm text-beige/70 font-light mt-3">
+            Read ancestral culinary critiques or click cards to activate Shivansh Cinema real-time video captions overlay logs.
+          </p>
+        </div>
+
+        <!-- Cards slider Row -->
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+          
+          <!-- Card 1 -->
+          <div class="testimonial-slider-slide-card rounded-3xl bg-[#1a0509]/80 border border-gold/15 p-8 flex flex-col justify-between hover:border-gold/45 cursor-pointer hover:-translate-y-2.5 transition-all duration-500 shadow-xl group">
+            <div class="space-y-4 text-left">
+              <div class="flex gap-1 text-amber">
+                <i data-lucide="star" class="fill-amber text-amber w-3.5 h-3.5"></i>
+                <i data-lucide="star" class="fill-amber text-amber w-3.5 h-3.5"></i>
+                <i data-lucide="star" class="fill-amber text-amber w-3.5 h-3.5"></i>
+                <i data-lucide="star" class="fill-amber text-amber w-3.5 h-3.5"></i>
+                <i data-lucide="star" class="fill-amber text-amber w-3.5 h-3.5"></i>
+              </div>
+              <p class="text-xs text-beige/85 italic leading-relaxed font-light">
+                "A gastronomic pilgrimage into the heart of royal India. The Dum Biryani at Shivansh Restro isn’t just fuel—it is heritage, cooked with supreme passion. The ambience mirrors a maharaja’s majestic courtyard."
+              </p>
+            </div>
+
+            <div class="flex items-center gap-3.5 border-t border-gold/10 pt-5 mt-6 text-left">
+              <img src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=300&q=80" alt="Lady Victoria Sterling" class="w-11 h-11 rounded-full object-cover border border-gold/30">
+              <div>
+                <h4 class="font-bold text-white text-xs group-hover:text-gold transition-colors leading-none">Lady Victoria Sterling</h4>
+                <span class="text-[9px] uppercase tracking-wider text-beige/50 block mt-1 font-sans">Travel Journalist</span>
+              </div>
+              <span class="ml-auto flex items-center gap-1.5 px-2 py-0.5 rounded bg-gold/10 text-gold text-[8px] uppercase tracking-wider font-extrabold border border-gold/25 group-hover:bg-gold group-hover:text-maroon transition-all">
+                <i data-lucide="play" class="w-2.5 h-2.5"></i> Play Clip
+              </span>
+            </div>
+          </div>
+
+          <!-- Card 2 -->
+          <div class="testimonial-slider-slide-card rounded-3xl bg-[#1a0509]/80 border border-gold/15 p-8 flex flex-col justify-between hover:border-gold/45 cursor-pointer hover:-translate-y-2.5 transition-all duration-500 shadow-xl group">
+            <div class="space-y-4 text-left">
+              <div class="flex gap-1 text-amber">
+                <i data-lucide="star" class="fill-amber text-amber w-3.5 h-3.5"></i>
+                <i data-lucide="star" class="fill-amber text-amber w-3.5 h-3.5"></i>
+                <i data-lucide="star" class="fill-amber text-amber w-3.5 h-3.5"></i>
+                <i data-lucide="star" class="fill-amber text-amber w-3.5 h-3.5"></i>
+                <i data-lucide="star" class="fill-amber text-amber w-3.5 h-3.5"></i>
+              </div>
+              <p class="text-xs text-beige/85 italic leading-relaxed font-light">
+                "Every single plate serves exceptional technique and high respect for raw regional spices. The 36-hour cooked Dal Makhani is a marvel of culinary endurance. Exceptional standard of authentic Indian luxury."
+              </p>
+            </div>
+
+            <div class="flex items-center gap-3.5 border-t border-gold/10 pt-5 mt-6 text-left">
+              <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&w=300&q=80" alt="Chef Rajveer Malhotra" class="w-11 h-11 rounded-full object-cover border border-gold/30">
+              <div>
+                <h4 class="font-bold text-white text-xs group-hover:text-gold transition-colors leading-none">Chef Rajveer Malhotra</h4>
+                <span class="text-[9px] uppercase tracking-wider text-beige/50 block mt-1 font-sans">Michelin Star Advisor</span>
+              </div>
+              <span class="ml-auto flex items-center gap-1.5 px-2 py-0.5 rounded bg-gold/10 text-gold text-[8px] uppercase tracking-wider font-extrabold border border-gold/25 group-hover:bg-gold group-hover:text-maroon transition-all">
+                <i data-lucide="play" class="w-2.5 h-2.5"></i> Play Clip
+              </span>
+            </div>
+          </div>
+
+          <!-- Card 3 -->
+          <div class="testimonial-slider-slide-card rounded-3xl bg-[#1a0509]/80 border border-gold/15 p-8 flex flex-col justify-between hover:border-gold/45 cursor-pointer hover:-translate-y-2.5 transition-all duration-500 shadow-xl group">
+            <div class="space-y-4 text-left">
+              <div class="flex gap-1 text-amber">
+                <i data-lucide="star" class="fill-amber text-amber w-3.5 h-3.5"></i>
+                <i data-lucide="star" class="fill-amber text-amber w-3.5 h-3.5"></i>
+                <i data-lucide="star" class="fill-amber text-amber w-3.5 h-3.5"></i>
+                <i data-lucide="star" class="fill-amber text-amber w-3.5 h-3.5"></i>
+                <i data-lucide="star" class="fill-amber text-amber w-3.5 h-3.5"></i>
+              </div>
+              <p class="text-xs text-beige/85 italic leading-relaxed font-light">
+                "We hosted our grand engagement party for 180 guests here. The Shivansh banquet team handled everything with spotless elite hospitality. The gold leaf desserts made our evenings legendary."
+              </p>
+            </div>
+
+            <div class="flex items-center gap-3.5 border-t border-gold/10 pt-5 mt-6 text-left">
+              <img src="https://images.unsplash.com/photo-1517841905240-472988babdf9?auto=format&fit=crop&w=300&q=80" alt="Samantha & Richard Chen" class="w-11 h-11 rounded-full object-cover border border-gold/30">
+              <div>
+                <h4 class="font-bold text-white text-xs group-hover:text-gold transition-colors leading-none">Samantha & Richard Chen</h4>
+                <span class="text-[9px] uppercase tracking-wider text-beige/50 block mt-1 font-sans">Engagement Clients</span>
+              </div>
+              <span class="ml-auto flex items-center gap-1.5 px-2 py-0.5 rounded bg-gold/10 text-gold text-[8px] uppercase tracking-wider font-extrabold border border-gold/25 group-hover:bg-gold group-hover:text-maroon transition-all">
+                <i data-lucide="play" class="w-2.5 h-2.5"></i> Play Clip
+              </span>
+            </div>
+          </div>
+
+        </div>
+
+      </div>
+    </section>
+
+
+    <!-- SECTION: PALACE PORTFOLIO (GALLERY) -->
+    <section 
+      id="gallery" 
+      class="py-24 relative overflow-hidden bg-gradient-to-b from-[#0A0204] via-[#0E0305] to-[#0D0204]"
+    >
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+        
+        <!-- Header -->
+        <div class="text-center max-w-2xl mx-auto mb-16">
+          <span class="text-xs uppercase tracking-widest text-saffron font-bold block">Palatial Visage Portfolios</span>
+          <h2 class="font-display font-medium text-3xl sm:text-4xl text-ivory tracking-wide font-serif mt-2">
+            The Chambers of <span class="text-gold italic">Grandeur & Spices</span>
+          </h2>
+          <p class="text-xs sm:text-sm text-beige/70 font-light mt-3">
+            Gaze upon our golden dining architecture, premium tandoor displays, and royal reception assemblies.
+          </p>
+        </div>
+
+        <!-- Filter tabs pills -->
+        <div class="flex flex-wrap gap-2.5 justify-center mb-12">
+          <button data-cat="all" class="gallery-category-trigger-btn px-4.5 py-2 rounded-full border border-gold/15 bg-gradient-to-r from-gold via-amber to-saffron text-maroon font-black text-xs uppercase tracking-wider cursor-pointer">All Visions</button>
+          <button data-cat="interior" class="gallery-category-trigger-btn px-4.5 py-2 rounded-full border border-gold/15 text-beige/70 hover:border-gold hover:text-gold text-xs uppercase tracking-wider cursor-pointer font-semibold">Palace Interiors</button>
+          <button data-cat="food" class="gallery-category-trigger-btn px-4.5 py-2 rounded-full border border-gold/15 text-beige/70 hover:border-gold hover:text-gold text-xs uppercase tracking-wider cursor-pointer font-semibold">Chef Creations</button>
+          <button data-cat="events" class="gallery-category-trigger-btn px-4.5 py-2 rounded-full border border-gold/15 text-beige/70 hover:border-gold hover:text-gold text-xs uppercase tracking-wider cursor-pointer font-semibold">Royal Gatherings</button>
+          <button data-cat="customers" class="gallery-category-trigger-btn px-4.5 py-2 rounded-full border border-gold/15 text-beige/70 hover:border-gold hover:text-gold text-xs uppercase tracking-wider cursor-pointer font-semibold">Nobles Moments</button>
+        </div>
+
+        <!-- Gallery item cards grid -->
+        <div 
+          id="gallery-items-canvas-wrapper"
+          class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6"
+        >
+          <!-- Dynamically Injected from app.js based on tab category filters -->
+        </div>
+
+      </div>
+    </section>
+
+
+    <!-- SECTION: CHARIOT ROADMAP (CONTACT) -->
+    <section 
+      id="contact" 
+      class="py-24 relative overflow-hidden bg-gradient-to-b from-[#0D0204] via-[#100305] to-[#0A0204]"
+    >
+      <div class="absolute bottom-1/4 right-0 w-85 h-85 bg-gold/5 rounded-full filter blur-[120px] pointer-events-none"></div>
+
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+        
+        <!-- Titles -->
+        <div class="text-center max-w-2xl mx-auto mb-16">
+          <span class="text-xs uppercase tracking-widest text-saffron font-bold block">The Royal Route</span>
+          <h2 class="font-display font-medium text-3xl sm:text-4xl text-ivory tracking-wide font-serif mt-2">
+            Steer Your <span class="text-gold italic">Golden Chariot</span> To Us
+          </h2>
+          <p class="text-xs sm:text-sm text-beige/70 font-light mt-3">
+            Explore physical address locations, scheduled reservation hours, or click the 2D Pathmaker system to map a trajectory to our gates.
+          </p>
+        </div>
+
+        <!-- Layout details splitting -->
+        <div class="grid grid-cols-1 lg:grid-cols-12 gap-10 items-stretch">
+          
+          <!-- Static contact details (Left Column) -->
+          <div class="lg:col-span-5 bg-[#180509]/80 border border-gold/20 p-8 sm:p-10 rounded-3xl glassmorphism text-left space-y-6 flex flex-col justify-between">
+            
+            <div class="space-y-6">
+              <h3 class="font-display font-medium text-lg text-gold border-b border-gold/15 pb-2.5">The Sovereign Courts</h3>
+              
+              <div class="space-y-5 text-sm font-light text-beige/80">
+                
+                <!-- Address -->
+                <div class="flex items-start gap-4">
+                  <div class="h-9 w-9 rounded-full bg-gold/10 border border-gold/30 flex items-center justify-center shrink-0 text-gold">
+                    <i data-lucide="map-pin" class="w-4 h-4"></i>
+                  </div>
+                  <div>
+                    <span class="text-xs font-black text-ivory block font-display">Palace Location</span>
+                    <p class="text-xs text-beige/75 mt-0.5 leading-relaxed">
+                      Sovereign Arcade Block A, Inner Circle Complex, Rajpath Marg, New Delhi, India 110001
+                    </p>
+                  </div>
+                </div>
+
+                <!-- Hours -->
+                <div class="flex items-start gap-4">
+                  <div class="h-9 w-9 rounded-full bg-gold/10 border border-gold/30 flex items-center justify-center shrink-0 text-gold">
+                    <i data-lucide="clock" class="w-4 h-4"></i>
+                  </div>
+                  <div>
+                    <span class="text-xs font-black text-ivory block font-display">Assemble Dining Hours</span>
+                    <p class="text-xs text-beige/75 mt-0.5">
+                      <strong>Lunch Court:</strong> 12:00 PM – 03:00 PM Daily<br/>
+                      <strong>Gala Dinner:</strong> 07:00 PM – 11:30 PM Daily
+                    </p>
+                  </div>
+                </div>
+
+                <!-- Communications -->
+                <div class="flex items-start gap-4">
+                  <div class="h-9 w-9 rounded-full bg-gold/10 border border-gold/30 flex items-center justify-center shrink-0 text-gold">
+                    <i data-lucide="mail" class="w-4 h-4"></i>
+                  </div>
+                  <div>
+                    <span class="text-xs font-black text-ivory block font-display">Court Ledgers Mail</span>
+                    <p class="text-xs text-beige/75 mt-0.5">
+                      shivansh882277@gmail.com<br/>
+                      Inquiries: bookings@shivanshrestro.com
+                    </p>
+                  </div>
+                </div>
+
+              </div>
+            </div>
+
+            <!-- Write feedback form ledger -->
+            <form id="noble-contact-feedback-ledgers" class="space-y-4 border-t border-gold/10 pt-5 mt-6">
+              <span class="text-[9px] uppercase tracking-widest text-gold font-bold block mb-1">Direct Scribbler Ledger</span>
+              <div class="grid grid-cols-2 gap-3">
+                <input type="text" placeholder="Your Title" required class="w-full px-4 py-2.5 bg-[#0A0204] border border-gold/25 rounded-lg text-xs placeholder-beige/40 focus:outline-none" />
+                <input type="email" placeholder="Your E-mail" required class="w-full px-4 py-2.5 bg-[#0A0204] border border-gold/25 rounded-lg text-xs placeholder-beige/40 focus:outline-none" />
+              </div>
+              <textarea rows="2" placeholder="Scribe private feedback message directly to patron..." required class="w-full px-4 py-2.5 bg-[#0A0204] border border-gold/25 rounded-lg text-xs placeholder-beige/40 focus:outline-none"></textarea>
+              <button type="submit" class="w-full py-2.5 text-[10px] font-bold uppercase tracking-widest bg-gold hover:bg-saffron text-maroon rounded-full transition-colors cursor-pointer">Dispatch Message Ink</button>
+            </form>
+
+          </div>
+
+          <!-- Interactive 2D Pathmaker canvas Map simulator (Right Column) -->
+          <div class="lg:col-span-7 bg-[#1c060b]/80 border border-gold/20 p-8 sm:p-10 rounded-3xl glassmorphism flex flex-col justify-between text-center relative shadow-2xl">
+            <div class="absolute inset-4 border border-dashed border-gold/15 rounded-2xl pointer-events-none"></div>
+
+            <div class="space-y-4 relative z-10 w-full">
+              <div class="flex items-center justify-between border-b border-gold/15 pb-3">
+                <h3 class="font-display font-medium text-lg text-gold">2D Chariot Pathmaker Navigator</h3>
+                <span class="px-2.5 py-1 rounded bg-gold/10 text-gold border border-gold/30 text-[8px] uppercase tracking-widest font-extrabold font-sans">
+                  Interactive Canvas Map
+                </span>
+              </div>
+              
+              <p class="text-xs text-beige/70 font-light text-left leading-relaxed">
+                Click below to animate the royal Chariot trace-route from your Guest Manor, bypassing Lotus Gardens to reach the hot coal ovens of Shivansh Restro!
+              </p>
+
+              <!-- Main Canvas Box -->
+              <div class="rounded-2xl border border-gold/25 bg-[#0A0204] overflow-hidden relative shadow-inner">
+                <canvas id="chariot-nav-canvas" class="block w-full bg-[#0A0204]"></canvas>
+                
+                <!-- Floating corner alert label -->
+                <div class="absolute top-4 left-4 p-2 bg-[#120306]/90 border border-dashed border-gold/35 rounded-xl text-left pointer-events-none z-10 max-w-[150px]">
+                  <span class="text-[7px] uppercase font-bold text-gold block tracking-wide">Ledger Coordinates</span>
+                  <span class="font-mono text-[9px] text-[#FFBF00] mt-0.5 block">28°36'51"N 77°13'12"E</span>
+                </div>
+              </div>
+
+              <!-- Action buttons row -->
+              <div class="flex flex-col sm:flex-row items-center justify-between pt-2 gap-4">
+                <div id="chariot-arrival text-notice" class="text-left font-sans text-[11px] text-beige/50">
+                  Click route button to activate cartographic simulation sequences.
+                </div>
+
+                <button 
+                  id="trigger-chariot-route-animation"
+                  class="flex items-center gap-2 px-6 py-3 rounded-full bg-gradient-to-r from-gold via-amber to-saffron text-maroon text-xs uppercase font-extrabold tracking-wider hover:opacity-95 cursor-pointer active:scale-95 transition-transform"
+                >
+                  <i data-lucide="compass" class="w-3.5 h-3.5 animate-spin"></i>
+                  <span>Route My Chariot</span>
+                </button>
+              </div>
+
+            </div>
+
+          </div>
+
+        </div>
+
+      </div>
+    </section>
+
+
+    <!-- FOOTER SECTION PORTALS -->
+    <footer class="bg-[#050102] border-t border-gold/15 py-16 relative overflow-hidden">
+      <!-- Ambient backdrop glow -->
+      <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-96 radial-gold-glow pointer-events-none opacity-10"></div>
+
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+        
+        <div class="grid grid-cols-1 md:grid-cols-12 gap-10 items-start pb-12 border-b border-gold/10">
+          
+          <!-- Column 1 -->
+          <div class="md:col-span-5 text-left space-y-4">
+            <a href="#home" class="nav-scroll-trigger inline-flex items-center gap-2 group" data-sec="home">
+              <div class="h-9 w-9 flex items-center justify-center rounded bg-gold p-1">
+                <span class="font-display font-black text-maroon text-base">S</span>
+              </div>
+              <span class="font-display font-black text-gold text-base tracking-wider block">SHIVANSH RESTRO</span>
+            </a>
+            
+            <p class="text-xs text-beige/70 leading-relaxed font-light max-w-sm">
+              An award-winning monument of authentic Indian royal dining, pristine coal-charred creations, and direct patron communications. Experience heritage in every spices matrix.
+            </p>
+
+            <div class="flex gap-3 text-beige/40 text-xs">
+              <a href="#" class="hover:text-gold transition-colors block" title="Facebook"><i data-lucide="facebook" class="w-4 h-4"></i></a>
+              <a href="#" class="hover:text-gold transition-colors block" title="Instagram"><i data-lucide="instagram" class="w-4 h-4"></i></a>
+              <a href="#" class="hover:text-gold transition-colors block" title="Twitter"><i data-lucide="twitter" class="w-4 h-4"></i></a>
+            </div>
+          </div>
+
+          <!-- Column 2 (Navigation) -->
+          <div class="md:col-span-3 text-left space-y-3">
+            <h4 class="font-display text-xs text-gold uppercase tracking-widest font-black">Gastronomy Links</h4>
+            <div class="grid grid-cols-2 gap-2 font-sans text-xs text-beige/70 font-light">
+              <a href="#about" class="nav-scroll-trigger hover:text-gold transition-colors" data-sec="about">Our Story</a>
+              <a href="#signature" class="nav-scroll-trigger hover:text-gold transition-colors" data-sec="signature">Signature Special</a>
+              <a href="#menu" class="nav-scroll-trigger hover:text-gold transition-colors" data-sec="menu">Curated Menu</a>
+              <a href="#booking" class="nav-scroll-trigger hover:text-gold transition-colors" data-sec="booking">Reserve Table</a>
+              <a href="#events" class="nav-scroll-trigger hover:text-gold transition-colors" data-sec="events">Palace Banquet</a>
+              <a href="#gallery" class="nav-scroll-trigger hover:text-gold transition-colors" data-sec="gallery">Image Gallery</a>
+            </div>
+          </div>
+
+          <!-- Column 3 (Newsletter) -->
+          <div class="md:col-span-4 text-left space-y-4">
+            <h4 class="font-display text-xs text-gold uppercase tracking-widest font-black">Elite Nobles Club</h4>
+            <p class="text-xs text-beige/70 leading-normal font-light">
+              Enter our secret ledger register to unlock private alerts and free dessert vouchers.
+            </p>
+
+            <form id="newsletter-subscription-box" class="flex items-center relative gap-2">
+              <input 
+                type="email" 
+                placeholder="His Majesty's Email" 
+                required 
+                class="w-full px-4 py-3 pr-16 rounded-full bg-maroon/20 border border-gold/20 text-xs placeholder-beige/40 text-white focus:outline-none"
+              />
+              <button 
+                type="submit"
+                class="absolute right-1.5 top-1.5 bottom-1.5 px-4 rounded-full bg-gold hover:bg-saffron text-maroon text-[9px] font-black uppercase tracking-wider cursor-pointer"
+              >
+                JOIN
+              </button>
+            </form>
+          </div>
+
+        </div>
+
+        <!-- Copyright credits row -->
+        <div class="flex flex-col sm:flex-row items-center justify-between text-center mt-8 text-[10px] text-beige/40">
+          <span>&copy; 2026 SHIVANSH RESTRO. All Imperial Rights Reserved.</span>
+          <div class="flex gap-4 mt-4 sm:mt-0 leading-none">
+            <a href="#" class="hover:text-gold">Sovereign Privacy Policy</a>
+            <a href="#" class="hover:text-gold">Tables Terms of Conduct</a>
+            <a href="#" class="hover:text-gold text-gold font-bold">Patron: Shivansh Agrawal</a>
+          </div>
+        </div>
+
+      </div>
+
+      <!-- Quick back to top anchor trigger -->
+      <button 
+        id="back-to-top-anchor"
+        onclick="window.scrollTo({top:0, behavior:'smooth'})"
+        class="fixed bottom-6 right-6 h-10 w-10 text-gold bg-maroon border border-gold/30 hover:border-gold hover:text-amber rounded-full flex items-center justify-center opacity-0 pointer-events-none transition-all duration-300 z-40 cursor-pointer shadow shadow-gold/25"
+        title="Scroll to Top"
+      >
+        <i data-lucide="chevrons-up" class="w-5 h-5"></i>
+      </button>
+    </footer>
+
+
+    <!-- ============================================== -->
+    <!-- SLIDEOVER SIDE DRAWER: THE COURIER CARTS & CHECKOUT -->
+    <!-- ============================================== -->
+    <div id="cart-drawer-overlay" class="fixed inset-0 bg-black/60 backdrop-blur-sm z-50 transition-opacity hidden"></div>
+    
+    <div 
+      id="cart-drawer-container"
+      class="fixed top-0 right-0 bottom-0 w-full sm:w-[440px] bg-[#120306] border-l border-gold/25 shadow-2xl z-50 transition-transform duration-300 ease-in-out flex flex-col justify-between"
+      style="transform: translateX(100%);"
+    >
+      
+      <!-- Drawer Header -->
+      <div class="p-6 border-b border-gold/20 flex items-center justify-between bg-maroon/20">
+        <div class="flex items-center gap-2">
+          <i data-lucide="shopping-bag" class="text-gold w-5 h-5"></i>
+          <div>
+            <h4 class="font-display font-black text-sm text-gold uppercase tracking-wider leading-none">Your Gastronomy Tray</h4>
+            <span class="text-[9px] uppercase tracking-widest text-beige/50 block mt-1 font-sans">Palace home delivery ledger</span>
+          </div>
+        </div>
+        
+        <button 
+          id="close-cart-drawer"
+          class="h-8 w-8 rounded-full border border-gold/20 hover:border-gold text-gold bg-transparent flex items-center justify-center cursor-pointer transition-colors"
+          title="Close drawer"
+        >
+          <i data-lucide="x" class="w-4 h-4"></i>
+        </button>
+      </div>
+
+
+      <!-- VIEWPORT A: MAIN CART ITEM LIST -->
+      <div id="cart-drawer-items-view" class="flex-1 overflow-y-auto p-6 flex flex-col justify-between">
+        <!-- Scrollable cards list -->
+        <div id="drawer-cart-items-scroller" class="space-y-4 max-h-[360px] overflow-y-auto pr-1">
+          <!-- Dynamic cards list are rendered by app.js -->
+        </div>
+
+        <!-- Taxations & Sub totals values (Controlled by app.js) -->
+        <div id="cart-sub-totals-block" class="space-y-4 pt-6 border-t border-gold/15 mt-6 hidden">
+          
+          <!-- Secure Promo voucher box -->
+          <div class="space-y-1.5 text-left mb-2">
+            <span class="text-[8px] uppercase tracking-widest text-gold font-black">Apply Sovereign Promo / Patron Estimate voucher</span>
+            <div class="flex items-center gap-2">
+              <input 
+                id="cart-coupon-input-box"
+                type="text" 
+                placeholder="ROYAL20 or OWNER-XXXX" 
+                class="flex-1 px-3 py-2 text-xs bg-black border border-gold/25 rounded-lg text-white font-mono placeholder-beige/40 focus:outline-none"
+              />
+              <button 
+                id="apply-secret-promo-btn"
+                class="px-4 py-2 bg-gradient-to-r from-gold to-saffron text-maroon font-bold text-xs rounded-lg uppercase tracking-wider cursor-pointer"
+              >
+                Apply
+              </button>
+            </div>
+            <!-- Alert Match coupon feedback line -->
+            <p id="cart-coupon-matches-notice" class="hidden"></p>
+          </div>
+
+          <div class="space-y-2.5 text-xs text-beige/80 border-t border-gold/10 pt-3 relative z-10 font-sans">
+            <div class="flex justify-between">
+              <span>Tray Subtotal:</span>
+              <span id="sum-total" class="font-mono text-white">$0.00</span>
+            </div>
+            
+            <div id="cart-promo-reduction-row" class="flex justify-between text-emerald hidden font-bold">
+              <span>Sovereign Discount:</span>
+              <span id="cart-discount-value" class="font-mono">-$0.00</span>
+            </div>
+
+            <div class="flex justify-between">
+              <span>Chariot Dispatch fee:</span>
+              <span id="shipping-fee" class="font-mono text-white">$5.00</span>
+            </div>
+            
+            <div class="flex justify-between">
+              <span>8% Sovereign Tax (GST):</span>
+              <span id="saffron-tax-sum" class="font-mono text-white">$0.00</span>
+            </div>
+            
+            <div class="flex justify-between text-gold border-t border-dashed border-gold/25 pt-3 mt-3">
+              <span class="font-display font-bold uppercase text-xs">Total Balance Payable:</span>
+              <span class="final-grand-amount font-mono text-lg font-black text-saffron">$0.00</span>
+            </div>
+          </div>
+        </div>
+
+        <button 
+          id="cart-proceed-checkout-btn"
+          class="w-full py-4 text-xs font-black uppercase tracking-widest rounded-full bg-gradient-to-r from-gold via-amber to-saffron text-maroon hover:opacity-95 transition-opacity mt-6 cursor-pointer hidden"
+        >
+          Proceed to Palace Checkout
+        </button>
+      </div>
+
+
+      <!-- VIEWPORT B: CHECKOUT FORM LAYER -->
+      <div id="cart-drawer-checkout-form" class="flex-1 overflow-y-auto p-6 flex flex-col justify-between hidden">
+        
+        <div class="space-y-5 text-left">
+          <div class="flex items-center gap-2 border-b border-gold/15 pb-2 cursor-pointer text-beige/50 hover:text-gold" id="back-to-cart-drawer">
+            <i data-lucide="arrow-left" class="w-4 h-4"></i>
+            <span class="text-xs uppercase font-bold font-sans tracking-wide">Back to cart Tray</span>
+          </div>
+
+          <h3 class="font-display font-medium text-sm text-gold">Grand Feast Transit Details</h3>
+
+          <form id="royal-order-checkout-form" class="space-y-4">
+            
+            <div class="space-y-1">
+              <label class="text-[8px] uppercase tracking-wider text-beige/50">Nobleman Full Title</label>
+              <input id="checkout-noble-title" type="text" placeholder="Maharaja Vineet" required class="w-full px-4 py-3 bg-[#0A0204] border border-gold/25 rounded-xl text-xs text-white focus:outline-none" />
+            </div>
+
+            <div class="space-y-1">
+              <label class="text-[8px] uppercase tracking-wider text-beige/50">Mobile Contact Phone</label>
+              <input id="checkout-courier-phone" type="tel" placeholder="+91 9301-1201" required class="w-full px-4 py-3 bg-[#0A0204] border border-gold/25 rounded-xl text-xs text-white focus:outline-none" />
+            </div>
+
+            <div class="space-y-1">
+              <label class="text-[8px] uppercase tracking-wider text-beige/50">Feast Destination Address</label>
+              <input id="checkout-destination-address" type="text" placeholder="Court Wing Room 502, Diplomatic Enclave" required class="w-full px-4 py-3 bg-[#0A0204] border border-gold/25 rounded-xl text-xs text-white focus:outline-none" />
+            </div>
+
+            <!-- Payment gateway selections visual cards -->
+            <div class="space-y-1.5 pt-2">
+              <label class="text-[8px] uppercase tracking-wider text-beige/50">Select Settlement Pathway</label>
+              <div class="grid grid-cols-2 gap-3">
+                <div id="pay-method-cod" class="p-3.5 rounded-xl bg-gold/15 border border-gold text-gold hover:border-gold transition-all cursor-pointer text-center text-xs font-bold uppercase leading-none">
+                  Cash on Delivery (COD)
+                </div>
+                <div id="pay-method-card" class="p-3.5 rounded-xl border border-gold/15 hover:border-gold transition-all text-beige/50 cursor-pointer text-center text-xs font-bold uppercase leading-none">
+                  Royal Cards Gateway
+                </div>
+              </div>
+            </div>
+
+            <div id="pay-card-number-wrapper" class="space-y-1 hidden animate-fade-in">
+              <label class="text-[8px] uppercase tracking-wider text-[#FFBF00]">16-Digit Sovereign Gold Card Number</label>
+              <input type="text" placeholder="5202 ---- ---- 4101" class="w-full px-4 py-3 bg-[#0A0204] border border-gold/25 rounded-xl text-xs text-white placeholder-beige/40 focus:outline-none font-mono" />
+            </div>
+
+            <div class="pt-4 border-t border-gold/15 space-y-2 text-xs font-sans text-beige/70">
+              <div class="flex justify-between">
+                <span>Paying Grand Total Sum:</span>
+                <span class="final-grand-amount font-mono text-gold font-bold">$0.00</span>
+              </div>
+            </div>
+
+            <button 
+              type="submit"
+              class="w-full py-4 text-xs font-black uppercase tracking-widest rounded-full bg-gradient-to-r from-gold via-amber to-saffron text-maroon hover:opacity-95 cursor-pointer text-center relative z-10 transition-opacity"
+            >
+              Authorize Regal Feast Dispatch
+            </button>
+
+          </form>
+        </div>
+
+      </div>
+
+
+      <!-- VIEWPORT C: REAL-TIME ACTIVE PROGRESS COURIER TRACKER -->
+      <div id="cart-active-tracking-view" class="flex-1 overflow-y-auto p-6 flex flex-col justify-between hidden">
+        
+        <div class="space-y-6 text-left">
+          
+          <div class="text-center p-4 bg-gold/5 border border-gold/20 rounded-2xl">
+            <span class="text-[8px] uppercase text-gold block font-black leading-none mb-1">Estimated Courier Track Ledger</span>
+            <span id="tracker-order-code" class="font-mono text-saffron font-bold text-sm">SHV-******</span>
+          </div>
+
+          <!-- Countdown big timing ring -->
+          <div class="p-8 rounded-full border border-dashed border-gold/30 flex flex-col items-center justify-center text-center max-w-[200px] mx-auto bg-[#0a0204]">
+            <span class="text-[9px] font-sans uppercase text-beige/50 tracking-wider">Feast Arriving In</span>
+            <span id="tracker-arriving-index" class="font-mono text-lg font-black text-saffron mt-1.5 animate-pulse">~35 Mins 00 Secs</span>
+          </div>
+
+          <!-- Vertical Step steppers progress elements -->
+          <div class="relative pl-8 space-y-6">
+            
+            <!-- Step Wire -->
+            <div id="step-wire-0" class="absolute top-6 left-[11px] bottom-0 w-[2px] bg-gold/15"></div>
+
+            <!-- Step 1 -->
+            <div class="relative flex items-start gap-4">
+              <div id="step-badge-0" class="w-6 h-6 rounded-full flex items-center justify-center text-[10px] font-bold border border-gold/20 bg-[#180509] text-gold/50 relative z-10">1</div>
+              <div>
+                <span id="step-title-0" class="font-sans text-xs font-bold text-beige/40">Royal Order Registered</span>
+                <p class="text-[9px] text-beige/50 mt-0.5 leading-relaxed font-light">Sovereign ledger entries written by court scribe.</p>
+              </div>
+            </div>
+
+            <!-- Step 2 -->
+            <div class="relative flex items-start gap-4">
+              <div id="step-badge-1" class="w-6 h-6 rounded-full flex items-center justify-center text-[10px] font-bold border border-gold/20 bg-[#180509] text-gold/50 relative z-10">2</div>
+              <div>
+                <span id="step-title-1" class="font-sans text-xs font-bold text-beige/40">Clay Ovens Ignited</span>
+                <p class="text-[9px] text-beige/50 mt-0.5 leading-relaxed font-light">Chef Vineet heating bricks with premium oak charcoal.</p>
+              </div>
+            </div>
+
+            <!-- Step 3 -->
+            <div class="relative flex items-start gap-4">
+              <div id="step-badge-2" class="w-6 h-6 rounded-full flex items-center justify-center text-[10px] font-bold border border-gold/20 bg-[#180509] text-gold/50 relative z-10">3</div>
+              <div>
+                <span id="step-title-2" class="font-sans text-xs font-bold text-beige/40">Chariot Dispatched</span>
+                <p class="text-[9px] text-beige/50 mt-0.5 leading-relaxed font-light">Rider sprinting in insulated gold-plated steam caps.</p>
+              </div>
+            </div>
+
+            <!-- Step 4 -->
+            <div class="relative flex items-start gap-4">
+              <div id="step-badge-3" class="w-6 h-6 rounded-full flex items-center justify-center text-[10px] font-bold border border-gold/20 bg-[#180509] text-gold/50 relative z-10">4</div>
+              <div>
+                <span id="step-title-3" class="font-sans text-xs font-bold text-beige/40">Gala Feast Arrived</span>
+                <p class="text-[9px] text-beige/50 mt-0.5 leading-relaxed font-light">Delivered to your throne chamber. Enjoy ancestral spices!</p>
+              </div>
+            </div>
+
+          </div>
+
+          <!-- Destination details -->
+          <div class="p-4 bg-gold/5 border border-gold/15 rounded-2xl text-xs space-y-1">
+            <span class="text-[9px] uppercase tracking-widest text-gold font-bold">Courier Destination Portal</span>
+            <p id="tracker-courier-destination" class="text-white mt-1 leading-normal">502 Court Wing, Diplomatic Enclave</p>
+          </div>
+
+          <div class="grid grid-cols-2 gap-4 pt-4 border-t border-gold/10">
+            <button 
+              id="cancel-courier-btn"
+              class="py-3 px-4 rounded-xl border border-red-500/30 text-red-400 hover:bg-red-500/5 text-[10px] uppercase font-bold tracking-wider cursor-pointer"
+            >
+              Recall Courier Chariot
+            </button>
+            <button 
+              id="tracking-done-return-btn"
+              class="py-3 px-4 rounded-xl bg-gold hover:bg-saffron text-maroon text-[10px] uppercase font-black tracking-widest cursor-pointer"
+            >
+              Return to Catalog
+            </button>
+          </div>
+
+        </div>
+
+      </div>
+
+
+    </div>
+
+
+    <!-- ============================================== -->
+    <!-- OVERLAYS: FULLSCREEN MODALS -->
+    <!-- ============================================== -->
+
+    <!-- LIGHTBOX: PHOTO PREVIEW SCALE OVERLAY -->
+    <div id="lightbox-backdrop-modal-holder" class="fixed inset-0 bg-black/95 backdrop-blur z-50 flex items-center justify-center px-4 hidden transition-opacity duration-300">
+      <button 
+        id="kill-lightbox-popup"
+        class="absolute top-6 right-6 h-12 w-12 rounded-full border border-gold/20 hover:border-gold text-gold hover:text-amber bg-transparent flex items-center justify-center cursor-pointer font-bold text-lg"
+        title="Dismiss visual"
+      >
+        ✕
+      </button>
+
+      <div class="max-w-4xl max-h-[85vh] w-full flex flex-col items-center justify-center gap-4 relative lightbox-inner-box">
+        <img 
+          id="lightbox-zoomed-picture"
+          src="" 
+          alt="Palace Lightbox preview" 
+          class="max-w-full max-h-[70vh] object-contain rounded-3xl border border-gold/25 shadow-2xl"
+          referrerpolicy="no-referrer"
+        />
+        <p id="lightbox-image-caption-card" class="text-white text-center text-xs font-serif italic max-w-xl leading-relaxed mt-2"></p>
+      </div>
+    </div>
+
+
+    <!-- CINEMA: TESTIMONIAL VIDEO PREVIEW TRANSCRIPT OVERLAY -->
+    <div id="cinema-player-modal-backdrop" class="fixed inset-0 bg-black/95 backdrop-blur-md z-50 flex items-center justify-center px-4 hidden">
+      <div 
+        id="cinema-player-modal"
+        class="bg-[#140409] border border-gold/30 rounded-3xl p-6 sm:p-8 max-w-xl w-full relative shadow-2xl shadow-gold/10"
+      >
+        <!-- Content will be injected and synchronized via app.js -->
+      </div>
+    </div>
+
+
+    <!-- Lucide Icons CDN script -->
+    <script src="https://unpkg.com/lucide@latest"></script>
+    
+    <!-- Modular Application Data Catalyst -->
+    <script src="data.js"></script>
+    
+    <!-- Modular Engine App Catalyst -->
+    <script src="app.js"></script>
+
   </body>
 </html>
-
