@@ -1,0 +1,117 @@
+@import url('https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700;900&family=Playfair+Display:ital,wght@0,400..900;1,400..900&family=Poppins:wght@300;400;500;600;700&family=Inter:wght@300;400;500;600;700&display=swap');
+@import "tailwindcss";
+
+@theme {
+  --font-sans: "Poppins", "Inter", sans-serif;
+  --font-serif: "Playfair Display", "Cinzel", serif;
+  --font-display: "Cinzel", "Playfair Display", serif;
+  
+  --color-saffron: #FF9933;
+  --color-maroon: #6A0D25;
+  --color-gold: #D4AF37;
+  --color-gold-hover: #AA8C2C;
+  --color-ivory: #FFFFF0;
+  --color-beige: #F5F5DC;
+  --color-cream: #FFFDD0;
+  --color-emerald: #50C878;
+  --color-amber: #FFBF00;
+  
+  --animate-gold-pulse: goldPulse 3s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+  --animate-float-spice: floatSpice 8s ease-in-out infinite;
+  --animate-sparkle: sparkle 4s linear infinite;
+
+  @keyframes goldPulse {
+    0%, 100% {
+      opacity: 1;
+      transform: scale(1);
+      box-shadow: 0 0 20px rgba(212, 175, 55, 0.4);
+    }
+    50% {
+      opacity: .8;
+      transform: scale(1.03);
+      box-shadow: 0 0 35px rgba(212, 175, 55, 0.7);
+    }
+  }
+
+  @keyframes floatSpice {
+    0%, 100% {
+      transform: translateY(0px) rotate(0deg);
+    }
+    50% {
+      transform: translateY(-15px) rotate(15deg);
+    }
+  }
+
+  @keyframes sparkle {
+    0%, 100% {
+      opacity: 0.2;
+    }
+    50% {
+      opacity: 0.8;
+    }
+  }
+}
+
+/* Custom Scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
+}
+::-webkit-scrollbar-track {
+  background: #0B0305;
+}
+::-webkit-scrollbar-thumb {
+  background: #D4AF37;
+  border-radius: 4px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: #FFBF00;
+}
+
+html {
+  scroll-behavior: smooth;
+  scroll-padding-top: 80px;
+  background-color: #0A0204;
+  color: #FFFFF0;
+}
+
+/* Custom patterns & ambient lights */
+.royal-maroon-gradient {
+  background: linear-gradient(135deg, #110104 0%, #2A040D 50%, #050001 100%);
+}
+
+.gold-glow {
+  text-shadow: 0 0 10px rgba(212, 175, 55, 0.6);
+}
+
+.gold-border-glow {
+  box-shadow: 0 0 15px rgba(212, 175, 55, 0.2);
+}
+
+.glassmorphism {
+  background: rgba(42, 4, 13, 0.35);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1px solid rgba(212, 175, 55, 0.15);
+}
+
+.glassmorphism-light {
+  background: rgba(255, 255, 240, 0.04);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+/* Indian royal pattern overlay */
+.mandala-pattern {
+  background-image: radial-gradient(circle, rgba(212,175,55,0.03) 1px, transparent 1px);
+  background-size: 24px 24px;
+}
+
+.hero-radial-lighting {
+  background: radial-gradient(circle at 50% 50%, rgba(106, 13, 37, 0.3) 0%, rgba(10, 2, 4, 0.95) 75%);
+}
+
+.radial-gold-glow {
+  background: radial-gradient(circle at 50% 50%, rgba(212, 175, 55, 0.15) 0%, transparent 60%);
+}
+
